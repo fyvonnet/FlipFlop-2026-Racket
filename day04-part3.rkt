@@ -14,13 +14,6 @@
               [else lst])])
           (read-input in new-lst))))))
 
-(define count-swaps
-  (lambda (side leaves [count 0])
-    (cond
-      [(null? leaves) count]
-      [(eq? (car leaves) side) (count-swaps side (cdr leaves) count)]
-      [else (count-swaps (car leaves) (cdr leaves) (add1 count))])))
-
 (define climb
   (lambda (leaves)
     (match leaves
@@ -34,8 +27,5 @@
       0
       (add1 (workers (climb leaves))))))
 
-(let
-    ([input
-      (call-with-input-file "inputs/day04.txt" read-input)])
-    (workers input))
+(workers (call-with-input-file "inputs/day04.txt" read-input))
 
